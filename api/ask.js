@@ -58,7 +58,7 @@ const INTENT = [
   [/\bwho\s+(are|is|made|built|created)\b|\byour\s+(creator|author)\b/i, "who"],
   [/\bgoogle\s*form\b|\bwhy\s+not\s+a?\s*form\b/i, "notgoogleform"],
   [/\bwhat\s+(is|are)\s+(this|it|the\s+map)\b/i, "concept"],
-  [/\b(ai|a\.i\.|claude|chatgpt|llm|gpt)\b/i, "ai"],
+  [/\b(ai|a\.i\.|claude|chatgpt|llm|gpt)\b/i, "whyai"],
   [/\bbookface\b/i, "precedent"],
   [/\bwho\s+are\s+you\b/i, "who"]
 ];

@@ -226,7 +226,7 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
   <div style="display:flex;align-items:baseline;gap:20px">
     <div class="badge">Concept test <b>&middot;</b> Not a live product <b>&middot;</b> HEC Paris research</div>
     <button class="ask-btn" id="ask-btn" title="Unlocks once you finish">
-      <span class="lock" id="ask-lock">&#9679;</span><span id="ask-label">Ask</span>
+      <span class="lock" id="ask-lock">&#9679;</span><span id="ask-label">Push back</span>
     </button>
   </div>
 </header>
@@ -254,15 +254,15 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
   <!-- 1 · Q1 recent need -->
   <section class="card" data-step="1">
     <div class="eyebrow">01 &middot; Your last 90 days</div>
-    <h2>Did you need a specialist skill for a small job, under roughly 20 hours?</h2>
-    <p class="sub">A design tweak, a data migration, a legal read, a pitch polish, one landing page. Small, specific, urgent.</p>
+    <h2>Did you hit something your team did not have the know-how for in-house?</h2>
+    <p class="sub">A design call, a data migration, a legal read, a pricing model, one landing page. Small, specific, and outside what you had on the team.</p>
     <div class="opts" data-q="q1_need" data-single>
       <button class="opt" data-v="several"><span class="key">01</span><span>Yes, several times</span></button>
       <button class="opt" data-v="once"><span class="key">02</span><span>Yes, once</span></button>
       <button class="opt" data-v="no"><span class="key">03</span><span>No, we were covered</span></button>
     </div>
     <div class="followup" id="skill-follow" style="display:none">
-      <div class="q-label">What skill was it? <span>(the demo will use your answer)</span></div>
+      <div class="q-label">What was it? <span>(the demo will use your answer)</span></div>
       <input type="text" id="skill-input" maxlength="60" placeholder="Figma, Rust, RGPD, motion design&hellip;" autocomplete="off">
     </div>
     <div class="row">
@@ -277,12 +277,11 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
     <p class="sub">The last time it happened. Pick the closest.</p>
     <div class="opts" data-q="q2_action" data-single>
       <button class="opt" data-v="freelancer"><span class="key">01</span><span>Hired an external freelancer <small>Malt, Upwork, an agency</small></span></button>
-      <button class="opt" data-v="favor"><span class="key">02</span><span>Asked a favour in my network</span></button>
-      <button class="opt" data-v="ai"><span class="key">03</span><span>Leaned on AI to get through it <small>Claude, ChatGPT, and some hope</small></span></button>
-      <button class="opt" data-v="diy"><span class="key">04</span><span>Did it ourselves <small>slower or worse than we would like</small></span></button>
-      <button class="opt" data-v="dropped"><span class="key">05</span><span>Dropped it. It never got done</span></button>
-      <button class="opt" data-v="hired"><span class="key">06</span><span>Hired someone permanent</span></button>
-      <button class="opt" data-v="na"><span class="key">07</span><span>Does not apply to me</span></button>
+      <button class="opt" data-v="network"><span class="key">02</span><span>Asked someone in my network</span></button>
+      <button class="opt" data-v="diy"><span class="key">03</span><span>Worked it out ourselves, slowly</span></button>
+      <button class="opt" data-v="dropped"><span class="key">04</span><span>Dropped it. It never got done</span></button>
+      <button class="opt" data-v="unknown"><span class="key">05</span><span>Did not know who to ask</span></button>
+      <button class="opt" data-v="na"><span class="key">06</span><span>Does not apply to me</span></button>
     </div>
     <div class="row">
       <button class="btn" data-next disabled>Continue</button>
@@ -297,9 +296,9 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
     <div class="result" id="result">
       <span class="lbl">Simulated &middot; Station F campus</span>
       <span class="big" id="match-count">0</span>
-      people under this roof have solved your exact problem before. Not to hire. To ask. You reach them through their founder, who approves everything, and twenty minutes of their judgement plus the tools you already pay for does the rest.
+      people under this roof have done this before. Not to hire. To ask. You reach them through their founder, who approves everything, and twenty minutes of their guidance plus the tools you already pay for does the rest.
       <div class="names" id="match-tags"></div>
-      <div class="sim-note">Simulated data. No real Station F directory exists. That absence is the point, and it is the concept being tested.</div>
+      <div class="sim-note">Simulated data, invented names. No such directory exists yet. Whether it should is the hypothesis being tested.</div>
     </div>
     <div class="row">
       <button class="btn" data-next>Three more questions</button>
@@ -309,7 +308,7 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
   <!-- 4 · Q3 would you reach out + friction -->
   <section class="card" data-step="4">
     <div class="eyebrow">04 &middot; Honestly</div>
-    <h2>Would you have actually reached out?</h2>
+    <h2>Would you have actually asked?</h2>
     <div class="opts" data-q="q3_reach" data-single>
       <button class="opt" data-v="immediately"><span class="key">01</span><span>Yes, immediately</span></button>
       <button class="opt" data-v="maybe"><span class="key">02</span><span>Maybe, depending on who it is</span></button>
@@ -322,7 +321,7 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
         <button class="chip" data-v="competitive">Competitive or confidentiality risk</button>
         <button class="chip" data-v="strangers">I do not know these people</button>
         <button class="chip" data-v="quality">Cannot judge their advice</button>
-        <button class="chip" data-v="imposing">Feels like imposing on their time</button>
+        <button class="chip" data-v="owe">Did not want to owe a favour</button>
         <button class="chip" data-v="nothing">Nothing, I would just ask</button>
       </div>
     </div>
@@ -334,17 +333,14 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
   <!-- 5 · Q4 killer question -->
   <section class="card" data-step="5">
     <div class="eyebrow">05 &middot; The hard question</div>
-    <h2>They will give you the twenty minutes. What feels right in return?</h2>
-    <p class="sub">Be honest. This is the answer we most need unfiltered.</p>
+    <h2>A stranger on campus asks you for twenty minutes. You are slammed that week. What happens?</h2>
+    <p class="sub">Be honest. This is the answer we most need unfiltered, and the one most likely to sting.</p>
     <div class="opts" data-q="q4_exchange" data-single>
-      <button class="opt" data-v="free"><span class="key">01</span><span>Nothing. That is what a community is for</span></button>
-      <button class="opt" data-v="reciprocity"><span class="key">02</span><span>I return it <small>when they need an answer, I am there</small></span></button>
-      <button class="opt" data-v="token"><span class="key">03</span><span>A small thank-you <small>coffee, a credit, an intro</small></span></button>
-      <button class="opt" data-v="pay"><span class="key">04</span><span>Pay for their time properly <small>it is real expertise</small></span></button>
-      <button class="opt" data-v="depends"><span class="key">05</span><span>Depends <small>tell us below</small></span></button>
-    </div>
-    <div class="followup" id="depends-follow" style="display:none">
-      <input type="text" id="depends-input" maxlength="140" placeholder="It depends on&hellip;" autocomplete="off">
+      <button class="opt" data-v="take"><span class="key">01</span><span>I take the call <small>that is the deal, both ways</small></span></button>
+      <button class="opt" data-v="known"><span class="key">02</span><span>Only if I already knew them</span></button>
+      <button class="opt" data-v="priorhelp"><span class="key">03</span><span>Only if they had helped me first</span></button>
+      <button class="opt" data-v="paid"><span class="key">04</span><span>Only if they paid for my time</span></button>
+      <button class="opt" data-v="ignore"><span class="key">05</span><span>Honestly, I would let it sit</span></button>
     </div>
     <div class="row">
       <button class="btn" data-next disabled>Continue</button>
@@ -354,17 +350,21 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
   <!-- 6 · Q5 supply side -->
   <section class="card" data-step="6">
     <div class="eyebrow">06 &middot; The other side of the map</div>
-    <h2>Would you let your team be the ones consulted?</h2>
-    <p class="sub">You choose who is visible. You approve every request. Nobody sees spare hours, only what your people are good at. Even so:</p>
+    <h2>Would you let your team answer questions from other founders?</h2>
+    <p class="sub">No one is lent, no hours are billed. Just your people answering things they happen to know. You approve every request and choose who is visible. Even so:</p>
     <div class="opts" data-q="q5_list" data-single>
       <button class="opt" data-v="yes"><span class="key">01</span><span>Yes, the whole team</span></button>
       <button class="opt" data-v="some"><span class="key">02</span><span>Only some people</span></button>
-      <button class="opt" data-v="skills_only"><span class="key">03</span><span>What they know, yes. Their calendar, no</span></button>
+      <button class="opt" data-v="approve"><span class="key">03</span><span>Only questions I see and approve first</span></button>
       <button class="opt" data-v="no"><span class="key">04</span><span>No</span></button>
     </div>
     <div class="followup">
-      <div class="q-label">One line on why <span>(optional)</span></div>
-      <input type="text" id="why-input" maxlength="200" placeholder="Because&hellip;" autocomplete="off">
+      <div class="q-label">And would you trust advice from someone whose competence you cannot verify? <span>(pick one)</span></div>
+      <div class="opts" data-q="q5_trust">
+        <button class="opt" data-v="yes"><span class="key">01</span><span>Yes, I can judge it quickly enough myself</span></button>
+        <button class="opt" data-v="signal"><span class="key">02</span><span>Only with a signal <small>a rating, a mutual contact, a track record</small></span></button>
+        <button class="opt" data-v="no"><span class="key">03</span><span>No, advice I cannot vet is just noise</span></button>
+      </div>
     </div>
     <div class="row">
       <button class="btn" data-next disabled>Continue</button>
@@ -394,7 +394,7 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
     <p class="sub" style="margin-top:24px">That is the whole test. If the map ever lights up for real, the people in this building will be the first to know.</p>
     <div class="row">
       <button class="btn ghost" id="copy-link">Copy link</button>
-      <button class="btn ghost" id="open-chat">Ask about the research</button>
+      <button class="btn ghost" id="open-chat">Push back on the research</button>
       <span class="skip" style="cursor:default;text-decoration:none">Know a founder here with strong opinions? Send it on.</span>
     </div>
     <div class="copy-out" id="copy-out"></div>
@@ -405,20 +405,20 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
 <div id="chat">
   <div class="chat-box">
     <div class="chat-head">
-      <h3>Ask about the research</h3>
+      <h3>Push back on the research</h3>
       <button class="x" id="chat-x" aria-label="Close">&times;</button>
     </div>
     <div class="chat-log" id="chat-log">
-      <div class="chat-hint">This answers from a research dossier on why this is consultation and not staffing, the demand and supply evidence, French labour law, and the failure record of similar systems. When it does not know, it says so, and the question gets logged. Those gaps are the point.</div>
+      <div class="chat-hint">We wired a small retrieval assistant over our actual research notes, so you get direct access to the current thinking. Disagree with a hypothesis, tell us it feels wrong, or back one you like. It answers only from that dossier, and when it cannot it says so and logs the question. The gaps are the point.</div>
       <div class="chat-seed">
         <button class="seed">Isn&rsquo;t this just Bookface for Station F?</button>
         <button class="seed">Why consult a human if Claude can do it?</button>
-        <button class="seed">Is this even legal in France?</button>
+        <button class="seed">The supply side will never show up</button>
         <button class="seed">What would prove you wrong?</button>
       </div>
     </div>
     <div class="chat-foot">
-      <input id="chat-input" maxlength="400" placeholder="Ask anything, or try to break it" autocomplete="off">
+      <input id="chat-input" maxlength="400" placeholder="Disagree with it, or ask anything" autocomplete="off">
       <button id="chat-send">Send</button>
     </div>
   </div>
@@ -436,7 +436,7 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbyPNt-uI5iBjpTKfynvbtk
 const A = {
   q1_need:null, q1_skill:"", q2_action:null,
   q3_reach:null, q3_friction:[], q4_exchange:null, q4_depends:"",
-  q5_list:null, q5_why:"", open_text:"", email:"",
+  q5_list:null, q5_trust:null, q5_why:"", open_text:"", email:"",
   step_times:{}, started_at:Date.now(),
   ua:navigator.userAgent.slice(0,120), vw:innerWidth, vh:innerHeight
 };
@@ -615,9 +615,6 @@ function onSelect(key, v){
     document.getElementById('skill-follow').style.display = v==='no' ? 'none' : 'block';
     if(v!=='no' && W>640) setTimeout(()=>document.getElementById('skill-input').focus(),200);
   }
-  if(key==='q4_exchange'){
-    document.getElementById('depends-follow').style.display = v==='depends' ? 'block' : 'none';
-  }
 }
 function validCard(card){
   const single = card.querySelector('[data-single]');
@@ -632,8 +629,6 @@ document.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click', 
 }));
 function captureFree(){
   A.q1_skill = document.getElementById('skill-input').value.trim();
-  A.q4_depends = document.getElementById('depends-input').value.trim();
-  A.q5_why = document.getElementById('why-input').value.trim();
   A.open_text = document.getElementById('open-input').value.trim();
   A.email = document.getElementById('email-input').value.trim();
 }
@@ -644,7 +639,7 @@ addEventListener('keydown', e=>{
     const btn = cards[step].querySelector('[data-next]:not(:disabled), #submit-btn');
     if(btn && step<7){ e.preventDefault(); btn.click(); }
   }
-  if(/^[1-7]$/.test(e.key) && document.activeElement.tagName!=='INPUT' && document.activeElement.tagName!=='TEXTAREA'){
+  if(/^[1-6]$/.test(e.key) && document.activeElement.tagName!=='INPUT' && document.activeElement.tagName!=='TEXTAREA'){
     const opts = cards[step].querySelectorAll('[data-single] .opt');
     const o = opts[+e.key-1]; if(o) o.click();
   }
@@ -703,8 +698,8 @@ let history = [], busy = false;
 function unlockAsk(){
   askBtn.classList.add('live');
   askLock.textContent = '\u25CF';
-  askLabel.textContent = 'Ask about the research';
-  askBtn.title = 'Ask the research assistant';
+  askLabel.textContent = 'Push back';
+  askBtn.title = 'Push back on the research';
 }
 try{ if(localStorage.getItem(DONE_KEY)) unlockAsk(); }catch(e){}
 
