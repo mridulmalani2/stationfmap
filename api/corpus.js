@@ -28,28 +28,30 @@ When this assistant does not know something, it says so and logs the question, w
   {
     id: "concept",
     title: "What The Map actually is",
-    keys: "concept idea product skills borrow trade hours premise pitch summary overview explain",
+    keys: "concept idea product skills consult consultation advice guidance knowledge exchange pooling ai claude in-house premise pitch summary overview explain",
     text: `The Map is a proposed live skills map of a startup ecosystem, tested at Station F in Paris, where roughly 1,000 startups sit under one roof.
 
-The premise: somewhere in that building is the exact specialist you needed last month, for a small job, maybe fifteen hours of work. A design fix, a data migration, a legal read, one landing page. You had no way to know they existed and no way to reach them. You hired an external freelancer, asked a favour, did it badly yourself, or dropped the task.
+The premise: somewhere in that building is the person who already solved the problem now sitting on your desk. Not to hire, to ask. You had no way to know they existed and no way to reach them, so you hired an external freelancer, asked a favour, muddled through with AI, did it badly yourself, or dropped it.
 
-The concept is that you type a skill, see who on campus has it, and reach the person through their founder, who approves everything. Consent comes first, always.
+The concept is consultation, not staffing. You type a skill, see who on campus has it, and reach the person through their founder, who approves everything. Consent comes first, always. What you get is twenty minutes of hard-won judgement, the steer that stops you building the wrong thing. Then today's tools, Claude and the rest, do the execution in house. For most small jobs a short consult plus AI now beats a fifteen-hour freelance contract.
 
-The long-term vision was to add compliance rails that make lawful inter-company staff lending easy. The research strongly suggests starting somewhere much narrower. See the sections on the three versions and on French law.`
+Knowledge exchange is the primary loop. A secondary path lets an employee in a genuine off-season pick up a small, basic task, because businesses are cyclical and real downtime exists, but that is the exception, not the pitch. Framing it this way solves two problems at once: the founder wasting money on freelancers for jobs they could do in house, and the team member whose expertise nobody outside their own company can see. It is a pooling of skill, not a discount on the freelance bill.
+
+The heavier idea of lawful inter-company staff lending is a possible future extension, not the starting point. The research is blunt about why. See the sections on the three versions and on French law.`
   },
   {
     id: "versions",
     title: "The three versions, V1, V2, V3",
-    keys: "v1 v2 v3 versions which version compliance rails fractional network talent graph recommendation what should you build",
-    text: `Three versions were considered.
+    keys: "v1 v2 v3 versions which version compliance rails fractional network talent graph consultation consult advice ai status recommendation what should you build",
+    text: `Three versions were considered, and the concept now commits hard to the third.
 
 V1, compliance rails: an employer-paid SaaS subscription that handles the paperwork for lawful, at-cost staff lending. Legal, but almost certainly too heavy for the small urgent tasks that motivate the whole idea.
 
-V2, a fractional network of alumni and moonlighters, monetised with a take-rate. The take-rate is the problem: charging a commission on lending employed staff between companies is a criminal offence in France. If you strip out the labour lending and it becomes a freelancer marketplace, you are competing with Malt and Comet without the "colleague at the next desk" advantage.
+V2, a fractional network of alumni and moonlighters, monetised with a take-rate. The take-rate is fatal: charging a commission on lending employed staff between companies is a criminal offence in France. Strip out the labour lending and it becomes a freelancer marketplace competing with Malt and Comet without the "colleague at the next desk" advantage.
 
-V3, an ecosystem talent graph: a skills-intelligence layer only. It surfaces who knows what, and facilitates advice and introductions. No labour moves, so no Article L8241 exposure at all.
+V3, the version this concept leads with: a consultation and knowledge-exchange layer. It surfaces who knows what, and facilitates advice and introductions. No labour moves, so no Article L8241 exposure at all. You consult a peer, get the steer, then execute in house with AI. Two upgrades sharpen V3 beyond the original research. First, framing the supply side as expertise worth consulting, rather than spare hours to lend, inverts the incentive: being the person others come to is status, not an admission of idle staff. Second, today's AI collapses execution, so the scarce input is judgement, and judgement is exactly what a twenty-minute consult delivers.
 
-The evidence supports V3, with high confidence. V1 is a legally gated future extension, not a starting point. V2's take-rate on labour lending should be dropped. The strongest positive precedent, Y Combinator's Bookface, works precisely because it surfaces expertise without ever transferring labour. That is the V3 posture exactly.`
+The evidence supports V3, with high confidence. V1 is a legally gated future extension. V2's take-rate on labour lending is dead on arrival. The strongest positive precedent, Y Combinator's Bookface, works precisely because it surfaces expertise without ever transferring labour. That is the consultation posture exactly.`
   },
   {
     id: "law-prohibition",
@@ -62,6 +64,8 @@ Penalties for illicit labour lending: two years imprisonment and a 30,000 euro f
 Courts apply a bundle-of-indicators test: whether a genuine distinct service is provided rather than just personnel, whose equipment is used, who holds the power of direction over the worker, and how billing is structured. Hourly billing tends to indicate illicit lending. Fixed-price billing for a defined deliverable indicates a genuine service contract.
 
 The practical consequence: a platform taking a commission on borrowing a colleague is committing a criminal offence. Only licensed interim agencies, entreprises de travail a temps partage, and portage salarial companies may lawfully take a fee on labour supply, and each requires becoming that regulated entity.
+
+Why this matters less under the reframe: consultation is not a mise a disposition. Advice, a conversation, an introduction, none of it transfers an employee or their labour, so Article L8241-1 does not bite. This prohibition is the reason the concept leads with knowledge exchange rather than staff lending. It is a constraint the design routes around, not a wall it has to climb.
 
 Confidence: HIGH. This is drawn from the statute itself via Legifrance.`
   },
@@ -77,6 +81,8 @@ Further obligations: the employment contract is neither broken nor suspended; th
 
 Now count what a twelve-hour task requires: founder approval at both firms, a signed convention, a signed avenant, prior CSE consultation twice over, and an insurance check. The transaction cost plausibly exceeds the value of the work. This, and not demand, is the binding constraint on the whole labour-flow model. It is the single most important practical objection to V1 and V2.
 
+None of this touches the consultation model, where nobody is made available and no salary is rebilled. It is the sheer weight of this lawful route, not consultation, that pushed the concept toward advice and introductions.
+
 Confidence: HIGH on the legal structure, and an informed estimate on the liquidity conclusion.`
   },
   {
@@ -91,17 +97,15 @@ Groupements d'employeurs (Article L1253-1) are the proven French institution for
   },
   {
     id: "supply",
-    title: "The supply side, where the idea is weakest",
-    keys: "supply weakness talent hoarding slack stigma adverse selection lemons managers poaching founders willing capacity spare idle hoard release",
-    text: `This is the concept's greatest weakness, and it is worth being blunt about it.
+    title: "The supply side, and how the reframe answers it",
+    keys: "supply weakness talent hoarding slack stigma adverse selection lemons managers poaching founders willing capacity spare idle hoard release status consultation reciprocity incentive",
+    text: `Supply was the concept's greatest weakness under the old framing, and the reframe is a direct answer to it. Worth being blunt about both.
 
-Talent hoarding is the default behaviour, not the exception. LinkedIn's Global Talent Trends 2020 found 70 percent of talent-acquisition professionals citing reluctant managers as a barrier to internal mobility. Gartner found more than half of supervisors admit to hoarding talent. Deloitte found 46 percent of managers actively resist internal mobility. Academic work by Ingrid Haegele, studying a German firm's internal labour market, found that temporarily reducing talent hoarding increased applications for promotion by 123 percent, meaning managers had been actively suppressing that mobility. If managers hoard talent for internal moves that benefit their own company, they will hoard far harder against lending staff to a different company entirely, where they see no upside.
+The old problem. Talent hoarding is the default. LinkedIn's Global Talent Trends 2020 found 70 percent of talent-acquisition professionals citing reluctant managers as a barrier to internal mobility. Gartner found more than half of supervisors admit to hoarding talent. Deloitte found 46 percent of managers actively resist internal mobility. Ingrid Haegele's study of a German firm's internal labour market found that temporarily reducing hoarding raised promotion applications by 123 percent, meaning managers had been suppressing that mobility. On top of that, slack stigma: on an investor-observed campus, admitting a team member has spare hours signals overhiring or weak product-market fit to your board and the firm two desks away. And adverse selection: if firms lend at all, they lend their least critical people, degrading the pool. That is the classic lemons dynamic.
 
-Slack stigma: Station F is a competitive, investor-observed campus. Admitting a team member has spare hours signals overhiring, weak product-market fit, or poor management to your board and to the firm two desks away. The premise that founders will publicly expose spare capacity runs directly against their incentive to appear capacity-constrained. This effect is reasoned rather than measured, so treat it as an informed estimate.
+Why consultation changes the picture. Every one of those objections attaches to lending labour and to advertising spare capacity. Consultation does neither. You are not offering idle hours, you are offering expertise, and being the team others consult is a status gain, not a confession of overhiring. Nobody hoards the right to answer a question the way they hoard a person's calendar. The supply you need is minutes of judgement, not seconded staff, which is far cheaper to give and far less embarrassing to make visible.
 
-Adverse selection: if firms do lend, they lend their least busy and least critical people, not their best. Nobody lends the star engineer during crunch. Over time this degrades pool quality and unravels trust, which is the classic lemons dynamic.
-
-And the deepest problem: even where slack genuinely exists, nobody measures it, and those who have it are incentivised not to advertise it. The concept assumes slack is both real and visible. The second limb is the weaker one.`
+What still has to be earned. Reciprocity is not automatic: people give time when they expect the norm to be returned and when defecting carries reputational cost, which is why the design keeps consent, approval, and individual control of visibility. And advising a direct competitor two desks away stays genuinely sensitive, consultation or not. The reframe turns the supply side from probably-fatal into plausibly-workable. It does not make it free.`
   },
   {
     id: "demand",
@@ -109,11 +113,23 @@ And the deepest problem: even where slack genuinely exists, nobody measures it, 
     keys: "demand evidence freelancers malt comet cost day rate small tasks unmet need market size how big is the problem",
     text: `The demand case is reasonable but largely circumstantial, and the best market data comes from vendors with an interest in the answer.
 
-The structural argument: the fixed cost of matching, meaning search, vetting, scoping and contracting, exceeds the value of a small task. So small tasks are underserved by freelance marketplaces by construction. Malt and BCG report 1.2 million freelances in France in 2024, 55 percent in Ile-de-France. Average day rates run 471 euros overall, 492 in tech and data, 394 in design. Malt applies a day-rate floor of 125 euros and commissions run roughly 10 to 15 percent. Those economics make a genuinely small task uneconomic to route through a marketplace. That gap is the white space The Map aims at.
+The structural argument: the fixed cost of matching, meaning search, vetting, scoping and contracting, exceeds the value of a small task. So small tasks are underserved by freelance marketplaces by construction. Malt and BCG report 1.2 million freelances in France in 2024, 55 percent in Ile-de-France. Average day rates run 471 euros overall, 492 in tech and data, 394 in design. Malt applies a day-rate floor of 125 euros and commissions run roughly 10 to 15 percent. Those economics make a genuinely small task uneconomic to route through a marketplace. That gap is the white space The Map aims at, and AI widens it: once execution is cheap, the unmet need on a small task is judgement, not labour.
 
 The expertise-location problem is well documented. Skills inventories and corporate directories have existed since the 1990s precisely because finding the right expert is hard even inside one organisation, let alone across a thousand co-located firms.
 
 The honest gap: there is no public data quantifying what fraction of Station F residents have unmet sub-twenty-hour specialist needs, how often, or what it costs them when a task is dropped. That number does not exist. It has to be generated. Generating it is exactly what this concept test is for, which is why your answers matter more than any citation here.`
+  },
+  {
+    id: "ai",
+    title: "Why consult a human when Claude exists",
+    keys: "ai claude chatgpt llm gpt tools automation execution judgement taste why human still needed in-house build replace substitute 2026",
+    text: `The obvious objection in 2026: if AI can do the work, why consult a person at all? The answer is the reason the reframe holds together.
+
+AI has collapsed the cost of execution. Drafting the code, the deck, the migration script, the first legal read, the landing page: a capable founder with Claude can now get most of the way on a small job that used to need a freelancer. What AI does not reliably give you is judgement about your specific situation. Which of three approaches will not trap you in six months. The landmine that someone who has already shipped this exact thing stepped on. Whether the problem you are solving is even the right problem. That is taste, context, and scar tissue, and it is precisely what a twenty-minute consult with the right peer delivers.
+
+So the division of labour is clean. Consult the human for the what and the watch-out. Use the AI for the how. The consult is worth more per minute than the grunt work it replaces, because pointing someone away from a costly mistake beats fifteen hours of execution they could now do themselves.
+
+This also reshapes demand. The make-versus-buy line has moved. Many small tasks that were buy, hire a freelancer, are now make, do it in house, once you have the steer. The Map sits on that new line: it supplies the missing input, judgement from someone who has done it, and lets the tools you already pay for do the rest. If AI keeps improving this gets more true, not less, because execution keeps getting cheaper while good judgement gets relatively scarcer.`
   },
   {
     id: "precedent",
@@ -127,7 +143,7 @@ Internal talent marketplaces such as Gloat and Fuel50 operate inside a single co
 
 Time banks and hour-swap systems reliably collapse, defeated by the double coincidence of wants, credit imbalance, and the absence of a price signal. Japan's shukko secondment system does work at scale, but it depends on keiretsu: decades-deep, equity-linked corporate groups with multi-year postings. That is the opposite of a spot market among strangers.
 
-The exception is Y Combinator's Bookface, and it is instructive. It works because of severe selection, a real trust fabric, reciprocity norms, and reputational sanction for defecting. And crucially, no labour ever transfers. Founders answer each other's questions and make introductions. Nobody is lent. That is why V3 is the recommended shape.`
+The exception is Y Combinator's Bookface, and it is instructive. It works because of severe selection, a real trust fabric, reciprocity norms, and reputational sanction for defecting. And crucially, no labour ever transfers. Founders answer each other's questions and make introductions. Nobody is lent. That is the consultation posture, advice and introductions with no labour transfer, and it is why the concept now leads with it.`
   },
   {
     id: "falsify",
@@ -135,7 +151,7 @@ The exception is Y Combinator's Bookface, and it is instructive. It works becaus
     keys: "falsify proof evidence test metrics thresholds how would you know success failure what would change your mind",
     text: `A thesis that cannot fail is worthless, so here are the numbers that would settle it.
 
-For V3, the talent-graph version: if more than roughly 40 percent of resident startups create and maintain a skills profile over a three-month pilot, the profile-decay objection weakens materially. Below about 15 percent, the decay failure mode is winning and the idea is in trouble. If more than 30 percent of searches produce an introduction or an answer within 48 hours, the expertise-location value is real. If profiles are still fresh at six months without anyone being paid to maintain them, the incentive design works.
+For V3, the consultation version: if more than roughly 40 percent of resident startups create and maintain a skills profile over a three-month pilot, the profile-decay objection weakens materially. Below about 15 percent, the decay failure mode is winning and the idea is in trouble. If more than 30 percent of searches produce an introduction or an answer within 48 hours, the expertise-location value is real. If founders who were consulted come back to consult others, reciprocity is taking hold. If profiles are still fresh at six months without anyone being paid to maintain them, the incentive design works.
 
 For V1, the labour-flow version, the evidence that would reverse the recommendation: founders actually completing the convention, the avenant, and the CSE consultation for sub-twenty-hour tasks at a rate producing recurring liquidity. If that happens, the paperwork-is-fatal thesis is falsified. Equally, if founders say they would lend their best people rather than only their idle ones, the adverse-selection prediction fails and the supply thesis improves.
 

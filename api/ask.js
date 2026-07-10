@@ -2,7 +2,7 @@
 // Grounded Q&A for The Map's concept test.
 //
 // Design notes:
-//  - No vector DB. The corpus is 12 sections. Groq's free tier bills tokens per
+//  - No vector DB. The corpus is a handful of sections. Groq's free tier bills tokens per
 //    DAY (llama-4-scout: 500K TPD), so the scarce resource is context width, not
 //    context length. Keyword scoring picks the best 3 sections (~1.8K tokens)
 //    instead of shipping the whole dossier (~15K tokens) on every call.
@@ -58,6 +58,8 @@ const INTENT = [
   [/\bwho\s+(are|is|made|built|created)\b|\byour\s+(creator|author)\b/i, "who"],
   [/\bgoogle\s*form\b|\bwhy\s+not\s+a?\s*form\b/i, "notgoogleform"],
   [/\bwhat\s+(is|are)\s+(this|it|the\s+map)\b/i, "concept"],
+  [/\b(ai|a\.i\.|claude|chatgpt|llm|gpt)\b/i, "ai"],
+  [/\bbookface\b/i, "precedent"],
   [/\bwho\s+are\s+you\b/i, "who"]
 ];
 
@@ -112,7 +114,7 @@ function rateLimited(ip) {
 
 // ---------------------------------------------------------------- prompt
 function buildSystem(context) {
-  return `You are the assistant for "The Map", a concept test run by an HEC Paris student at Station F. You answer founders' questions about the concept and the research behind it.
+  return `You are the assistant for "The Map", a concept test run by an HEC Paris student at Station F. The concept is a consultation and knowledge-exchange layer for the campus: founders consult a peer who has already solved their problem, get the steer, then execute in house with AI tools like Claude. It is not a staffing or labour-lending service, and lending staff is at most a heavier future extension. You answer founders' questions about the concept and the research behind it.
 
 GROUNDING RULES, follow exactly:
 1. Answer from the CONTEXT below. It is the research dossier and project background.

@@ -239,7 +239,7 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
   <section class="card on" data-step="0">
     <div class="eyebrow">Station F &middot; Concept test &middot; Two minutes</div>
     <h1>1,000 startups.<br>One roof.<br><em>No map.</em></h1>
-    <p class="sub">Somewhere in this building is the exact specialist you needed last month. You will never find them. We are testing an idea about that, a live skills map of the ecosystem, and we want your <b>unfiltered</b> reaction rather than your polite one. Anonymous. Six questions.</p>
+    <p class="sub">Somewhere in this building is the person who already solved the problem on your desk. Not to hire. To ask. Twenty minutes of their judgement, then you build the rest in-house with the tools you already pay for. We are testing a live skills map of the ecosystem, and we want your <b>unfiltered</b> reaction rather than your polite one. Anonymous. Six questions.</p>
     <div class="row">
       <button class="btn" data-next>Begin</button>
       <span class="skip" style="cursor:default;text-decoration:none">Two minutes, anonymous</span>
@@ -278,10 +278,11 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
     <div class="opts" data-q="q2_action" data-single>
       <button class="opt" data-v="freelancer"><span class="key">01</span><span>Hired an external freelancer <small>Malt, Upwork, an agency</small></span></button>
       <button class="opt" data-v="favor"><span class="key">02</span><span>Asked a favour in my network</span></button>
-      <button class="opt" data-v="diy"><span class="key">03</span><span>Did it ourselves <small>slower or worse than we would like</small></span></button>
-      <button class="opt" data-v="dropped"><span class="key">04</span><span>Dropped it. It never got done</span></button>
-      <button class="opt" data-v="hired"><span class="key">05</span><span>Hired someone permanent</span></button>
-      <button class="opt" data-v="na"><span class="key">06</span><span>Does not apply to me</span></button>
+      <button class="opt" data-v="ai"><span class="key">03</span><span>Leaned on AI to get through it <small>Claude, ChatGPT, and some hope</small></span></button>
+      <button class="opt" data-v="diy"><span class="key">04</span><span>Did it ourselves <small>slower or worse than we would like</small></span></button>
+      <button class="opt" data-v="dropped"><span class="key">05</span><span>Dropped it. It never got done</span></button>
+      <button class="opt" data-v="hired"><span class="key">06</span><span>Hired someone permanent</span></button>
+      <button class="opt" data-v="na"><span class="key">07</span><span>Does not apply to me</span></button>
     </div>
     <div class="row">
       <button class="btn" data-next disabled>Continue</button>
@@ -296,7 +297,7 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
     <div class="result" id="result">
       <span class="lbl">Simulated &middot; Station F campus</span>
       <span class="big" id="match-count">0</span>
-      people with this skill, in house at startups under this roof. Some have capacity their founders would happily lend or trade.
+      people under this roof have solved your exact problem before. Not to hire. To ask. You reach them through their founder, who approves everything, and twenty minutes of their judgement plus the tools you already pay for does the rest.
       <div class="names" id="match-tags"></div>
       <div class="sim-note">Simulated data. No real Station F directory exists. That absence is the point, and it is the concept being tested.</div>
     </div>
@@ -320,8 +321,8 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
         <button class="chip" data-v="awkward">Feels awkward to ask</button>
         <button class="chip" data-v="competitive">Competitive or confidentiality risk</button>
         <button class="chip" data-v="strangers">I do not know these people</button>
-        <button class="chip" data-v="quality">Cannot judge their quality</button>
-        <button class="chip" data-v="legal">Legal or HR complexity</button>
+        <button class="chip" data-v="quality">Cannot judge their advice</button>
+        <button class="chip" data-v="imposing">Feels like imposing on their time</button>
         <button class="chip" data-v="nothing">Nothing, I would just ask</button>
       </div>
     </div>
@@ -333,13 +334,13 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
   <!-- 5 · Q4 killer question -->
   <section class="card" data-step="5">
     <div class="eyebrow">05 &middot; The hard question</div>
-    <h2>Their founder says yes. Their designer has the hours. What feels right?</h2>
+    <h2>They will give you the twenty minutes. What feels right in return?</h2>
     <p class="sub">Be honest. This is the answer we most need unfiltered.</p>
     <div class="opts" data-q="q4_exchange" data-single>
-      <button class="opt" data-v="cost"><span class="key">01</span><span>Pay their company at cost <small>salary plus charges, no margin</small></span></button>
-      <button class="opt" data-v="market"><span class="key">02</span><span>Pay full market rate <small>as you would a freelancer</small></span></button>
-      <button class="opt" data-v="swap"><span class="key">03</span><span>Swap it <small>hours, favours or credits</small></span></button>
-      <button class="opt" data-v="free"><span class="key">04</span><span>Free, that is what community means</span></button>
+      <button class="opt" data-v="free"><span class="key">01</span><span>Nothing. That is what a community is for</span></button>
+      <button class="opt" data-v="reciprocity"><span class="key">02</span><span>I return it <small>when they need an answer, I am there</small></span></button>
+      <button class="opt" data-v="token"><span class="key">03</span><span>A small thank-you <small>coffee, a credit, an intro</small></span></button>
+      <button class="opt" data-v="pay"><span class="key">04</span><span>Pay for their time properly <small>it is real expertise</small></span></button>
       <button class="opt" data-v="depends"><span class="key">05</span><span>Depends <small>tell us below</small></span></button>
     </div>
     <div class="followup" id="depends-follow" style="display:none">
@@ -353,12 +354,12 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
   <!-- 6 · Q5 supply side -->
   <section class="card" data-step="6">
     <div class="eyebrow">06 &middot; The other side of the map</div>
-    <h2>Would you list your own team&rsquo;s skills on it?</h2>
-    <p class="sub">You choose who is visible. You approve every request. Even so:</p>
+    <h2>Would you let your team be the ones consulted?</h2>
+    <p class="sub">You choose who is visible. You approve every request. Nobody sees spare hours, only what your people are good at. Even so:</p>
     <div class="opts" data-q="q5_list" data-single>
       <button class="opt" data-v="yes"><span class="key">01</span><span>Yes, the whole team</span></button>
       <button class="opt" data-v="some"><span class="key">02</span><span>Only some people</span></button>
-      <button class="opt" data-v="skills_only"><span class="key">03</span><span>Skills yes, availability no</span></button>
+      <button class="opt" data-v="skills_only"><span class="key">03</span><span>What they know, yes. Their calendar, no</span></button>
       <button class="opt" data-v="no"><span class="key">04</span><span>No</span></button>
     </div>
     <div class="followup">
@@ -408,11 +409,11 @@ textarea{resize:none;min-height:88px;line-height:1.65;border:1px solid var(--lin
       <button class="x" id="chat-x" aria-label="Close">&times;</button>
     </div>
     <div class="chat-log" id="chat-log">
-      <div class="chat-hint">This answers from a research dossier on French labour law, the demand and supply evidence, and the failure record of similar systems. When it does not know, it says so, and the question gets logged. Those gaps are the point.</div>
+      <div class="chat-hint">This answers from a research dossier on why this is consultation and not staffing, the demand and supply evidence, French labour law, and the failure record of similar systems. When it does not know, it says so, and the question gets logged. Those gaps are the point.</div>
       <div class="chat-seed">
-        <button class="seed">Why is this not just a Google Form?</button>
+        <button class="seed">Isn&rsquo;t this just Bookface for Station F?</button>
+        <button class="seed">Why consult a human if Claude can do it?</button>
         <button class="seed">Is this even legal in France?</button>
-        <button class="seed">Would founders actually lend staff?</button>
         <button class="seed">What would prove you wrong?</button>
       </div>
     </div>
@@ -643,7 +644,7 @@ addEventListener('keydown', e=>{
     const btn = cards[step].querySelector('[data-next]:not(:disabled), #submit-btn');
     if(btn && step<7){ e.preventDefault(); btn.click(); }
   }
-  if(/^[1-6]$/.test(e.key) && document.activeElement.tagName!=='INPUT' && document.activeElement.tagName!=='TEXTAREA'){
+  if(/^[1-7]$/.test(e.key) && document.activeElement.tagName!=='INPUT' && document.activeElement.tagName!=='TEXTAREA'){
     const opts = cards[step].querySelectorAll('[data-single] .opt');
     const o = opts[+e.key-1]; if(o) o.click();
   }
