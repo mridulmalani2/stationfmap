@@ -1101,6 +1101,31 @@ function goSlide(i){
   slides[t].scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
 }
 
+/* Fly the whole deck past in one eased run and land on the last slide.
+   Mandatory snap and smooth scroll-behavior both fight a scripted scroll, so
+   both are stood down for the duration and restored on landing. */
+function flyToEnd(done){
+  const last = slides[slides.length - 1];
+  if (reduced) { last.scrollIntoView({ behavior: 'auto' }); done(); return; }
+  const root = document.documentElement;
+  const snap = root.style.scrollSnapType, beh = root.style.scrollBehavior;
+  root.style.scrollSnapType = 'none';
+  root.style.scrollBehavior = 'auto';
+  const from = scrollY;
+  const to = Math.min(last.offsetTop, document.body.scrollHeight - innerHeight);
+  const t0 = performance.now(), dur = 1500;
+  requestAnimationFrame(function step(now){
+    const k = Math.min(1, (now - t0) / dur);
+    /* easeInOutCubic: settles gently, blasts the middle, decelerates in */
+    const e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+    scrollTo(0, from + (to - from) * e);
+    if (k < 1) return requestAnimationFrame(step);
+    root.style.scrollSnapType = snap;
+    root.style.scrollBehavior = beh;
+    done();
+  });
+}
+
 /* a slide becomes live when it owns most of the viewport. that drives both the
    entrance animation and the rail, so they can never disagree. */
 const io = new IntersectionObserver(entries => {
@@ -1347,13 +1372,18 @@ const backBtn = document.getElementById('back');
 const hint = document.getElementById('hint');
 const sbody = document.getElementById('sbody');
 
+/* Freeze how much of the pitch they had actually read, once, at the moment they
+   commit to answering. This must run BEFORE any scripted scroll: the skip
+   button flies the deck past every slide, which would otherwise drive maxSlide
+   to the end and log a genuinely unprimed respondent as fully primed. */
+function lockPriming(){
+  if (A.read_to_slide !== null) return;
+  A.read_to_slide = maxSlide + 1;
+  A.skipped_pitch = maxSlide === 0;
+}
+
 function openSurvey(){
-  /* record priming state on the first open only: reopening later, after they
-     have scrolled the deck, must not rewrite how primed they were at answer time */
-  if (A.read_to_slide === null) {
-    A.read_to_slide = maxSlide + 1;
-    A.skipped_pitch = maxSlide === 0;
-  }
+  lockPriming();
   modal.classList.add('on');
   document.body.classList.add('locked');
   render();
@@ -1362,7 +1392,13 @@ function closeSurvey(){
   modal.classList.remove('on');
   if (!document.querySelector('.veil.on')) document.body.classList.remove('locked');
 }
-document.querySelectorAll('[data-survey]').forEach(b => b.addEventListener('click', openSurvey));
+document.querySelectorAll('[data-survey]').forEach(b => b.addEventListener('click', () => {
+  /* lock first, fly second: the flight passes every slide and must not be
+     mistaken for having read them */
+  lockPriming();
+  if (b.hasAttribute('data-skip')) flyToEnd(() => setTimeout(openSurvey, 340));
+  else openSurvey();
+}));
 document.getElementById('mx').addEventListener('click', closeSurvey);
 modal.addEventListener('click', e => { if (e.target === modal) closeSurvey(); });
 
