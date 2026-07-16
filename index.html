@@ -1499,7 +1499,17 @@ addEventListener('keydown', e => {
   }
 });
 
+/* One submission per page load. submit() awaits the POST, and the Send button
+   stayed live for the whole round trip, so an impatient second press fired a
+   second POST with the same answers. This logged one test three times. */
+let submitting = false;
+
 async function submit(){
+  if (submitting) return;
+  submitting = true;
+  nextBtn.disabled = true;
+  nextBtn.innerHTML = 'Sending';
+  hint.textContent = '';
   grab();
   A.step_ms['q' + q] = (A.step_ms['q' + q] || 0) + (Date.now() - qEnter);
   A.completed_at = Date.now();
