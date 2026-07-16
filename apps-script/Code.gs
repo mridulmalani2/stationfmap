@@ -32,6 +32,7 @@ var HEADERS = [
   "credit_take", "broke", "flat_price",
   "credits_rejected",
   "open_text", "email",
+  "skipped_pitch", "read_to_slide",
   "duration_s", "time_per_q",
   "ua", "viewport", "started_at"
 ];
@@ -119,6 +120,10 @@ function logResponse_(p) {
     p.credit_take || "", p.broke || "", p.flat_price || "",
     rejectsCredits,
     p.open_text || "", p.email || "",
+    // TRUE means they answered before reading the pitch. Those responses are the
+    // unprimed control: compare them against the rest before trusting any signal.
+    p.skipped_pitch === true,
+    p.read_to_slide || "",
     duration || "",
     JSON.stringify(p.step_ms || {}),
     p.ua || "",
