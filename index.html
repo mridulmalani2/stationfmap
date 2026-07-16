@@ -350,12 +350,14 @@ header.show{opacity:1;pointer-events:auto;border-bottom-color:var(--line)}
   display:flex;gap:20px;flex-wrap:wrap;align-items:center}
 .legal .linkish{font-size:12.5px}
 .legal span{font-size:12.5px;color:var(--faint)}
-/* byline reads as a signature rather than a link: serif name, hairline arrow */
-.byline{font-family:var(--serif);font-size:14.5px;color:var(--body);text-decoration:none;
-  display:inline-flex;align-items:center;gap:5px;transition:color .2s}
-.byline:hover{color:var(--accent)}
-.byline s{text-decoration:none;font-family:var(--sans);font-size:9.5px;opacity:.5;transition:opacity .2s}
-.byline:hover s{opacity:1}
+/* the byline lives in the facts strip, which is already the provenance row, so
+   it inherits that context instead of sitting unexplained among the disclaimers.
+   same weight as its neighbours: only the arrow marks it as a link. */
+.fact-me{text-decoration:none;color:var(--faint)}
+.fact-me b{transition:color .2s}
+.fact-me:hover b{color:var(--accent)}
+.fact-me s{text-decoration:none;font-size:10px;font-weight:400;opacity:.4;transition:opacity .2s}
+.fact-me:hover s{opacity:1}
 
 /* ================= MODALS ================= */
 .veil{position:fixed;inset:0;z-index:60;background:rgba(26,26,30,.42);
@@ -696,11 +698,10 @@ textarea{resize:none;min-height:130px;line-height:1.6}
     <div class="facts rise" style="--d:4">
       <div class="fact"><b>Anonymous</b>No name collected</div>
       <div class="fact"><b>Not a company</b>Nothing is being sold</div>
-      <div class="fact"><b>HEC Paris</b>Student research project</div>
       <div class="fact"><b>No trackers</b>No cookies, no analytics</div>
+      <a class="fact fact-me" href="https://www.linkedin.com/in/mridulmalani/" target="_blank" rel="noopener noreferrer"><b>Mridul Malani <s>&#8599;</s></b>HEC Paris student research</a>
     </div>
     <div class="legal rise" style="--d:5">
-      <a class="byline" href="https://www.linkedin.com/in/mridulmalani/" target="_blank" rel="noopener noreferrer">Mridul Malani <s>&#8599;</s></a>
       <button class="linkish" data-more="privacy">Privacy notice</button>
       <span>Not affiliated with Station F, Y Combinator or Upwork.</span>
     </div>
