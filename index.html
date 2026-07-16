@@ -91,12 +91,18 @@ body.locked{overflow:hidden}
 @keyframes gyroC{from{transform:rotateX(64deg) rotateY(0)}to{transform:rotateX(64deg) rotateY(360deg)}}
 
 /* ---------------- deck ---------------- */
-.slide{min-height:100svh;display:flex;align-items:center;position:relative;padding:92px 0 76px}
+/* padding tracks viewport height: a 720px laptop cannot spare the same 168px of
+   chrome clearance a 900px one can, and the slides must never outgrow the frame */
+.slide{min-height:100svh;display:flex;align-items:center;position:relative;
+  padding:clamp(72px,9vh,92px) 0 clamp(48px,7vh,76px)}
 .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 32px;position:relative;z-index:2}
 
-/* the deck only snaps where a full viewport can actually hold a slide.
-   on short or narrow screens it degrades to ordinary reading flow. */
-@media (min-width:860px) and (min-height:640px){
+/* The deck only locks to a fixed height where a slide is known to fit, and the
+   width floor must clear the 980px card-grid breakpoint: below it the grids go
+   single-column and three stacked cards cannot fit a viewport, so snapping there
+   would force exactly the bleed this is meant to prevent. Everywhere else
+   min-height lets a slide grow and the page scrolls normally. */
+@media (min-width:1000px) and (min-height:700px){
   html{scroll-snap-type:y mandatory}
   .slide{height:100svh;scroll-snap-align:start;scroll-snap-stop:always}
 }
@@ -225,9 +231,9 @@ header.show{opacity:1;pointer-events:auto;border-bottom-color:var(--line)}
 .tilt:hover::after{opacity:1}
 
 /* ================= PRIOR ART ================= */
-.priors{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
-.prior{background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:24px;
-  display:flex;flex-direction:column;gap:12px;min-height:230px}
+.priors{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.prior{background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:22px;
+  display:flex;flex-direction:column;gap:10px;min-height:196px}
 .prior-name{font-family:var(--serif);font-size:27px;font-weight:500;color:var(--ink);
   letter-spacing:-.015em;line-height:1}
 .prior-org{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
@@ -238,6 +244,16 @@ header.show{opacity:1;pointer-events:auto;border-bottom-color:var(--line)}
   color:var(--accent);font-weight:600;margin-bottom:5px}
 .prior-proves span{font-size:14px;color:var(--body);line-height:1.5}
 .disclaim{margin-top:18px;font-size:12px;color:var(--faint);letter-spacing:.02em}
+
+/* ================= COMPOUNDING ================= */
+.sources{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+.source{border:1px solid var(--line);border-radius:9px;padding:22px;background:var(--paper);
+  display:flex;flex-direction:column;gap:9px;min-height:196px}
+.source-ic{font-size:14px;line-height:1;color:var(--accent);opacity:.75}
+.source h3{font-size:19px}
+.source p{font-size:13.5px;color:var(--muted);line-height:1.55}
+.source-tag{margin-top:auto;border-top:1px solid var(--line);padding-top:11px;
+  font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
 
 /* ================= HEAT MAP ================= */
 .heat{margin-top:26px;border:1px solid var(--line);border-radius:9px;
@@ -287,9 +303,9 @@ header.show{opacity:1;pointer-events:auto;border-bottom-color:var(--line)}
 .layer .more{margin-top:auto}
 
 /* ================= CREDITS ================= */
-.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
-.tile{border:1px solid var(--line);border-radius:9px;padding:22px;background:var(--paper);
-  display:flex;flex-direction:column;gap:10px;min-height:250px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.tile{border:1px solid var(--line);border-radius:9px;padding:20px;background:var(--paper);
+  display:flex;flex-direction:column;gap:9px;min-height:196px}
 .tile-n{font-family:var(--serif);font-size:22px;color:var(--faint);line-height:1;
   font-variant-numeric:tabular-nums}
 .tile h3{font-size:19px}
@@ -301,8 +317,8 @@ header.show{opacity:1;pointer-events:auto;border-bottom-color:var(--line)}
 .tile.yes .verdict-tag{color:var(--good)}
 .tile.no{background:#FDF6F2;border-color:var(--accent-line)}
 .tile.no .verdict-tag{color:var(--accent)}
-.verdict{margin-top:26px;font-family:var(--serif);font-size:clamp(20px,2.5vw,27px);
-  line-height:1.38;color:var(--ink);max-width:40ch;letter-spacing:-.01em}
+.verdict{margin-top:18px;font-family:var(--serif);font-size:clamp(19px,2.3vw,26px);
+  line-height:1.36;color:var(--ink);max-width:44ch;letter-spacing:-.01em}
 /* the underline draws itself in once the slide is live */
 .verdict i{color:var(--accent);font-style:italic;
   background:linear-gradient(var(--accent-line),var(--accent-line)) no-repeat 0 94%/0% 2px;
@@ -310,15 +326,15 @@ header.show{opacity:1;pointer-events:auto;border-bottom-color:var(--line)}
 .live .verdict i{background-size:100% 2px}
 
 /* ================= CTA ================= */
-#s9{background:var(--raise)}
+#s10{background:var(--raise)}
 /* a quiet ring pulses off the main button, transform and opacity only, and only
    while the CTA slide owns the viewport */
 .btn.big{position:relative}
 .btn.big::after{content:'';position:absolute;inset:-1px;border-radius:inherit;
   border:1px solid var(--accent);opacity:0;pointer-events:none}
-#s9.now .btn.big::after{animation:ping 2.8s ease-out infinite}
+#s10.now .btn.big::after{animation:ping 2.8s ease-out infinite}
 @keyframes ping{0%{transform:scale(1);opacity:.45}70%,100%{transform:scale(1.09,1.45);opacity:0}}
-.cta-row{display:flex;align-items:center;gap:20px;margin-top:28px;flex-wrap:wrap}
+.cta-row{display:flex;align-items:center;gap:20px;margin-top:20px;flex-wrap:wrap}
 .facts{display:flex;gap:30px;flex-wrap:wrap;margin-top:34px;padding-top:22px;border-top:1px solid var(--line)}
 .fact{font-size:12.5px;color:var(--faint);letter-spacing:.02em}
 .fact b{display:block;color:var(--ink);font-weight:600;font-size:14px;margin-bottom:2px;letter-spacing:0}
@@ -416,9 +432,17 @@ textarea{resize:none;min-height:130px;line-height:1.6}
   color:var(--faint);display:none;font-family:ui-monospace,monospace}
 
 /* ================= RESPONSIVE ================= */
+/* short desktop viewports still snap one slide per screen, so the type scale
+   steps down rather than letting a slide bleed into the next one */
+@media (max-height:790px) and (min-width:860px){
+  h2{font-size:clamp(26px,3.2vw,38px)}
+  .lede{font-size:16px;line-height:1.55}
+  .prior-what,.tile-p,.source p,.layer p{font-size:13px}
+  .prior-proves span{font-size:13px}
+}
 @media (max-width:980px){
-  .priors,.tiles{grid-template-columns:1fr;gap:10px}
-  .prior,.tile{min-height:0}
+  .priors,.tiles,.sources{grid-template-columns:1fr;gap:10px}
+  .prior,.tile,.source{min-height:0}
   .flows{grid-template-columns:1fr 1fr}
   .layers{grid-template-columns:1fr}
 }
@@ -471,6 +495,7 @@ textarea{resize:none;min-height:130px;line-height:1.6}
   <div class="wrap">
     <div class="slide-num">01</div>
     <div class="line3d" data-line="Imagine Bookface from YC and Upwork, but private for Station&nbsp;F."></div>
+    <p class="slide-sub" data-sub>Two things get pooled: <b>the freelancers you already trust</b>, and <b>the skills already on your team</b>. Book twenty minutes with whoever has solved your problem, or get a name worth calling. Nobody is hired, nobody is lent.</p>
   </div>
 </section>
 
@@ -488,42 +513,12 @@ textarea{resize:none;min-height:130px;line-height:1.6}
   <div class="wrap">
     <div class="slide-num">03</div>
     <div class="line3d" data-line="None of this is new. You already do half of it on Slack."></div>
-    <p class="slide-sub" data-sub>So why not formalise it? Station F is the testing ground, not the endpoint. A thousand startups, one roof, real selection. <b>If it cannot work here, it cannot work anywhere.</b> If it does, it should travel: coworking spaces, other incubators, anywhere density already exists.</p>
+    <p class="slide-sub" data-sub>Someone posts <b>anyone know a good RGPD lawyer?</b> and three people answer. That is this, already happening, except it is unsearchable and gone by Thursday. I want to give it a memory, and test it here first. <b>If it cannot work at Station F, it cannot work anywhere.</b> If it does, it travels to every incubator with the same density.</p>
   </div>
 </section>
 
-<!-- ============ 04 · PRIOR ART ============ -->
+<!-- ============ 04 · HEAT MAP ============ -->
 <section class="slide" id="s4">
-  <div class="wrap">
-    <div class="eyebrow rise" style="--d:0">Prior art</div>
-    <h2 class="rise" style="--d:1">This is not a claim I invented.</h2>
-    <p class="lede rise" style="--d:2">Three things already exist. Each one proves a different piece of the argument, and none of them proves all of it.</p>
-    <div class="priors">
-      <article class="prior tilt rise" style="--d:3">
-        <div class="prior-name">Bookface</div>
-        <div class="prior-org">Y Combinator</div>
-        <p class="prior-what">A private, searchable directory of every founder who has been through YC, plus a forum where thousands of them answer each other.</p>
-        <div class="prior-proves"><b>What it proves</b><span>Expertise sharing works at scale when selection and trust are real. And it never moves a single employee.</span></div>
-      </article>
-      <article class="prior tilt rise" style="--d:4">
-        <div class="prior-name">Upwork</div>
-        <div class="prior-org">Open marketplace</div>
-        <p class="prior-what">Contracted freelance work at global scale. Search, vet, scope, contract, pay, all of it solved and running.</p>
-        <div class="prior-proves"><b>What it proves</b><span>The mechanics are long settled. What it lacks is the one thing this building has: the colleague at the next desk.</span></div>
-      </article>
-      <article class="prior tilt rise" style="--d:5">
-        <div class="prior-name">Station F</div>
-        <div class="prior-org">Paris</div>
-        <p class="prior-what">A thousand startups under one roof, admitted at somewhere between six and nine percent, all physically co-located.</p>
-        <div class="prior-proves"><b>What it proves</b><span>The density and selection the other two depend on, already assembled. Nobody has to build it.</span></div>
-      </article>
-    </div>
-    <p class="disclaim rise" style="--d:6">Referenced for comparison only. This project has no affiliation with Y Combinator, Upwork or Station F, and none of them has endorsed it.</p>
-  </div>
-</section>
-
-<!-- ============ 05 · HEAT MAP ============ -->
-<section class="slide" id="s5">
   <div class="wrap">
     <div class="eyebrow rise" style="--d:0">The problem</div>
     <h2 class="rise" style="--d:1">Somewhere in this building is the person who already solved it.</h2>
@@ -543,8 +538,68 @@ textarea{resize:none;min-height:130px;line-height:1.6}
   </div>
 </section>
 
-<!-- ============ 06 · WORKFLOWS ============ -->
+<!-- ============ 05 · COMPOUNDING ============ -->
+<section class="slide" id="s5">
+  <div class="wrap">
+    <div class="eyebrow rise" style="--d:0">Why it compounds</div>
+    <h2 class="rise" style="--d:1;max-width:27ch">The pool is not a thousand startups. It is everyone who has ever been here.</h2>
+    <p class="lede rise" style="--d:2">Startups arrive, grow, and leave within a few years. That churn reads like a weakness. It is the opposite, and it is exactly why Bookface works.</p>
+    <div class="sources">
+      <article class="source tilt rise" style="--d:3">
+        <span class="source-ic">&#9679;</span>
+        <h3>The startups that left</h3>
+        <p>Not competitors any more. Alumni, with a few more years of scar tissue than you have.</p>
+        <div class="source-tag">The network keeps its memory</div>
+      </article>
+      <article class="source tilt rise" style="--d:4">
+        <span class="source-ic">&#9670;</span>
+        <h3>The people you hired</h3>
+        <p>The engineer who was employee number two and moved on last year. You would still vouch for them, and now there is nothing at stake in saying so.</p>
+        <div class="source-tag">Vouched, no conflict left</div>
+      </article>
+      <article class="source tilt rise" style="--d:5">
+        <span class="source-ic">&#9727;</span>
+        <h3>The interns who finished</h3>
+        <p>Often the exact specialist a two-day job needs. Trained by you, knows the stack, already gone.</p>
+        <div class="source-tag">Cheap, fast, already vetted</div>
+      </article>
+    </div>
+    <p class="disclaim rise" style="--d:6">YC's current batch is a couple of hundred companies. Bookface is every founder who has ever been through it. Alumni keep their access, which is what keeps them reachable.</p>
+  </div>
+</section>
+
+<!-- ============ 06 · PRIOR ART ============ -->
 <section class="slide" id="s6">
+  <div class="wrap">
+    <div class="eyebrow rise" style="--d:0">Prior art</div>
+    <h2 class="rise" style="--d:1">This is not a claim I invented.</h2>
+    <p class="lede rise" style="--d:2">Three things already exist. Each one proves a different piece of the argument, and none of them proves all of it.</p>
+    <div class="priors">
+      <article class="prior tilt rise" style="--d:3">
+        <div class="prior-name">Bookface</div>
+        <div class="prior-org">Y Combinator</div>
+        <p class="prior-what">A private, searchable directory of every founder who has ever been through YC, plus a forum where they answer each other.</p>
+        <div class="prior-proves"><b>What it proves</b><span>An alumni graph compounds into the most valuable thing an accelerator owns. And it moves no one.</span></div>
+      </article>
+      <article class="prior tilt rise" style="--d:4">
+        <div class="prior-name">Upwork</div>
+        <div class="prior-org">Open marketplace</div>
+        <p class="prior-what">Contracted freelance work at global scale. Search, vet, scope, contract, pay, all solved and running.</p>
+        <div class="prior-proves"><b>What it proves</b><span>The mechanics are long settled. What it lacks is the colleague at the next desk.</span></div>
+      </article>
+      <article class="prior tilt rise" style="--d:5">
+        <div class="prior-name">Station F</div>
+        <div class="prior-org">Paris</div>
+        <p class="prior-what">A thousand startups under one roof, admitted at six to nine percent, all physically co-located.</p>
+        <div class="prior-proves"><b>What it proves</b><span>The density and selection the other two depend on, already assembled. Nobody has to build it.</span></div>
+      </article>
+    </div>
+    <p class="disclaim rise" style="--d:6">Referenced for comparison only. This project has no affiliation with Y Combinator, Upwork or Station F, and none of them has endorsed it.</p>
+  </div>
+</section>
+
+<!-- ============ 07 · WORKFLOWS ============ -->
+<section class="slide" id="s7">
   <div class="wrap">
     <div class="eyebrow rise" style="--d:0">What you would use it for</div>
     <h2 class="rise" style="--d:1">Not a directory. A way to unblock a Tuesday.</h2>
@@ -553,8 +608,8 @@ textarea{resize:none;min-height:130px;line-height:1.6}
   </div>
 </section>
 
-<!-- ============ 07 · LAYERS ============ -->
-<section class="slide" id="s7">
+<!-- ============ 08 · LAYERS ============ -->
+<section class="slide" id="s8">
   <div class="wrap">
     <div class="eyebrow rise" style="--d:0">How it works</div>
     <h2 class="rise" style="--d:1">Two layers. Neither one moves an employee.</h2>
@@ -563,7 +618,7 @@ textarea{resize:none;min-height:130px;line-height:1.6}
         <div class="layer-tag">Layer one</div>
         <h3>Your freelance bench, pooled</h3>
         <div class="pull">You are not trading your network for someone else's. You are trading one network for a thousand.</div>
-        <p>You might not get the exact person you had in mind. But the odds that you get <b>nobody</b> collapse. Less precision, far less risk.</p>
+        <p>You might not get the exact person you had in mind, but the odds that you get <b>nobody</b> collapse. And your bench is bigger than you think: the freelancers you use, the hire who left last year, the intern who finished in June.</p>
         <button class="more" data-more="layer1">The worry, and the answer <s>&rarr;</s></button>
       </article>
       <article class="layer tilt rise" style="--d:3">
@@ -577,11 +632,11 @@ textarea{resize:none;min-height:130px;line-height:1.6}
   </div>
 </section>
 
-<!-- ============ 08 · CREDITS ============ -->
-<section class="slide" id="s8">
+<!-- ============ 09 · CREDITS ============ -->
+<section class="slide" id="s9">
   <div class="wrap">
     <div class="eyebrow rise" style="--d:0">The mechanism, and its problem</div>
-    <h2 class="rise" style="--d:1">Credits, not cash. And here is what is wrong with them.</h2>
+    <h2 class="rise" style="--d:1;max-width:26ch">Credits, not cash. And here is what is wrong with them.</h2>
     <p class="lede rise" style="--d:2">Time banks reliably collapse. The research names three reasons. <b>I have answers to two.</b></p>
     <div class="tiles">
       <article class="tile yes tilt rise" style="--d:3">
@@ -610,8 +665,8 @@ textarea{resize:none;min-height:130px;line-height:1.6}
   </div>
 </section>
 
-<!-- ============ 09 · CTA ============ -->
-<section class="slide" id="s9">
+<!-- ============ 10 · CTA ============ -->
+<section class="slide" id="s10">
   <div class="wrap">
     <div class="eyebrow rise" style="--d:0">Which is where you come in</div>
     <h2 class="rise" style="--d:1">This does not exist. Tell me whether it should.</h2>
@@ -666,6 +721,9 @@ textarea{resize:none;min-height:130px;line-height:1.6}
   <p>The worry is real, and every founder has it: you share the freelancer you rely on, they get booked solid by somebody else, and they are not there the week you need them. That is a rational fear and it is the main reason people keep their bench private.</p>
   <div class="quote">You are not trading your network for someone else's. You are trading one network for a thousand.</div>
   <p>You might not get the exact person you had in mind. But the odds that you get <b>nobody</b> collapse. That is the trade: you give up a little precision and you take out most of the risk. It is diversification, applied to a bench instead of a portfolio.</p>
+  <h5>Your bench is bigger than you think</h5>
+  <p>It is not only the freelancers you have paid. It is the engineer who was employee number two and left last year. It is the intern who finished in June and is now looking for contract work. You would vouch for both of them tomorrow, and because they have already gone, there is no competitive tension in saying so.</p>
+  <p>Station F churns hard, so every resident is quietly accumulating this list whether they think of it that way or not. Nobody has ever asked you to write it down.</p>
   <h5>You stay in control</h5>
   <p>List them in your off-season, pull them the moment you get busy. Nobody competes with you for your own bench, because you decide when it is visible. A freelancer you are actively running a project with simply never appears.</p>
   <h5>Why this is legally clean</h5>
@@ -697,6 +755,7 @@ textarea{resize:none;min-height:130px;line-height:1.6}
   <p>And time banks reliably collapse. That is not a hostile reading, it is the research record, and it names three reasons.</p>
   <h5>01. The double coincidence of wants. Answered.</h5>
   <p>You need someone who needs what you have, at the same moment. In a small pool that match is not there. <b>Density is the answer.</b> Heat-map a thousand startups and you cover nearly every sector, so the match almost always exists. Station F is not a nice-to-have for this idea. It is the precondition.</p>
+  <p>And density here is not fixed. Station F turns over constantly, so the addressable pool is every startup that has ever held a desk, plus every person they hired and every intern they trained. The match gets easier to find every year, not harder.</p>
   <h5>02. Credit imbalance. Answered.</h5>
   <p>Some firms consume far more than they give, hit zero, and leave. <b>The answer is that you can always earn.</b> Credits are not only earned by giving consultations. You earn them by doing anything that makes the campus better:</p>
   <ul>
